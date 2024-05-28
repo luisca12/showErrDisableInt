@@ -1,7 +1,4 @@
 from netmiko import ConnectHandler
-from functions import *
-from strings import *
-from auth import *
 from log import logConfiguration
 import logging.config
 

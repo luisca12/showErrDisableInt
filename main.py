@@ -1,14 +1,15 @@
 from auth import Auth
-from strings import menuString, greetingString, inputErrorString
-from functions import checkIsDigit, mkdir
 from commandsCLI import errDisable
 from log import logConfiguration
 import os
 import logging.config
+from strings import menuString, greetingString, inputErrorString
+from utils import mkdir
+from functions import checkIsDigit
 
-def main():
-    os.system("CLS")
+def main():    
     mkdir()
+    os.system("CLS")
     greetingString()
     logging.config.dictConfig(logConfiguration)
     authLog = logging.getLogger('infoLog')
