@@ -56,7 +56,10 @@ def errDisable(validIPs, username, netDevice):
                 print(f"INFO: Searching and fixing errDisabled interfaces for device: {validDeviceIP}")
                 authLog.info(f"Searching and fixing errDisabled interfaces for device: {validDeviceIP}")
                 shErroDisableOut = sshAccess.send_command(shErroDisable)
+                print(shErroDisableOut)
+                authLog.info(f"{shHostnameOut}{shErroDisable}\n{shErroDisableOut}")
                 shErroDisableOut = re.findall(errDisableIntPatt, shErroDisableOut)
+                authLog.info(f"Found the following interfaces in error disable for device {validDeviceIP}: {shErroDisableOut}")
                 if shErroDisableOut:
                     for interface in shErroDisableOut:
                         interface = interface.strip()
@@ -65,6 +68,7 @@ def errDisable(validIPs, username, netDevice):
                         authLog.info(f"Recovering interface {interface} on device {validDeviceIP}")
                         recovIntOut = sshAccess.send_config_set(recovInt)
                         print(recovIntOut)
+                        authLog.info(f"{recovIntOut}")
                         print(f"INFO: Successfully recovered interface {interface} for device: {validDeviceIP}")
                         authLog.info(f"Successfully recovered interface {interface} for device: {validDeviceIP}")
                         with open(f"Outputs/generalOutputs.txt", "a") as file:
